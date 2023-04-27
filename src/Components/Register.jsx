@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { createUser } from "../api/api";
 
-const Register = ({ setToken }) => {
+const Register = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  //Submit form to create a new user
   const handleSubmit = async (event) => {
     event.preventDefault();
     const registerObj = {
@@ -17,7 +20,16 @@ const Register = ({ setToken }) => {
 
     try {
       const { token } = await createUser(registerObj);
-      setToken(token);
+
+      if (!token) {
+        console.log("Error creating a new token!");
+      } else {
+        setLocation("");
+        setName("");
+        setPassword("");
+        setUsername("");
+        navigate("/login");
+      }
     } catch (error) {
       throw error;
     }
@@ -25,6 +37,7 @@ const Register = ({ setToken }) => {
 
   return (
     <div>
+      <h2>Create Account</h2>
       <form className="form-container" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="InputEmail" className="form-label">
