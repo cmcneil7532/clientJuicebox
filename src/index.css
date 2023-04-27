@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Navbar */
+.nav-container {
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: maroon;
+}
+.link {
+  margin: 0 15px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a.active {
+  color: rgb(204, 203, 147);
+}
+
+/* Register */
+.form-container {
+  margin: 15px auto;
+  width: 60%;
+}
