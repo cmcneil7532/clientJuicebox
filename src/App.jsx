@@ -7,6 +7,7 @@ import { getUsers } from "./api/api.js";
 function App() {
   const [users, setUsers] = useState({});
   const [token, setToken] = useState("");
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     const fetchUsers = async () => {
       setUsers(await getUsers());
@@ -20,7 +21,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login setToken={setToken} setIsActive={setIsActive} />}
+        />
       </Routes>
     </div>
   );

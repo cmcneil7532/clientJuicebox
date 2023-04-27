@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/api";
 
-const Login = () => {
+const Login = ({ setToken, setIsActive }) => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,13 +14,20 @@ const Login = () => {
       password,
     };
     try {
-      const response = await loginUser(userObj);
+      const { token } = await loginUser(userObj);
+      if (token) {
+        localStorage.setItem("username", username);
+        setToken(token);
+        setIsActive(true);
+        setUsername("");
+        setPassword("");
+        navigate("/welcome");
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(username);
   return (
     <div>
       <h2>Please Login!</h2>
