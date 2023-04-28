@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Navbar, Login, Register, Home, Welcome } from "./components";
+import {
+  Navbar,
+  Login,
+  Register,
+  Home,
+  Welcome,
+  Post,
+  SignOut,
+} from "./components";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { getUsers } from "./api/api.js";
@@ -19,12 +27,14 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar client={client} />
 
       <Routes>
         {client === "true" ? (
           <>
             <Route path="/welcome" element={<Welcome />} />
+            <Route path="/post" element={<Post />} />
+            <Route path="/signout" element={<SignOut />} />
           </>
         ) : (
           <>

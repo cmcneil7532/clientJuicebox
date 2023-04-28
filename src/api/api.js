@@ -1,6 +1,8 @@
+const BASE_URL = "https://cmcneil-juicebox.onrender.com/api";
+
 export const getUsers = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/users");
+    const response = await fetch(`${BASE_URL}/users`);
     const result = await response.json();
     console.log(result);
     return result;
@@ -12,7 +14,7 @@ export const getUsers = async () => {
 export const createUser = async (userObj) => {
   //pass in username, password, a
   try {
-    const response = await fetch("http://localhost:3000/api/users/register", {
+    const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +30,7 @@ export const createUser = async (userObj) => {
 //Login an existing user
 export const loginUser = async (userObj) => {
   try {
-    const response = await fetch("http://localhost:3000/api/users/login", {
+    const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
