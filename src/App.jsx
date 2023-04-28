@@ -34,11 +34,16 @@ function App() {
           <>
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/post" element={<Post />} />
-            <Route path="/signout" element={<SignOut />} />
+            <Route
+              path="/signout"
+              element={
+                <SignOut setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
+              }
+            />
           </>
         ) : (
           <>
-            {" "}
+            <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route
               path="/login"
@@ -48,8 +53,6 @@ function App() {
             />
           </>
         )}
-
-        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );
