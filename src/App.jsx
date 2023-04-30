@@ -15,6 +15,7 @@ import { getUsers } from "./api/api.js";
 function App() {
   const [users, setUsers] = useState({});
   const [token, setToken] = useState("");
+  const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const client = localStorage.getItem("client");
 
@@ -33,22 +34,30 @@ function App() {
         {client === "true" ? (
           <>
             <Route path="/welcome" element={<Welcome />} />
-            <Route path="/post" element={<Post />} />
+            <Route path="/post" element={<Post user={user} />} />
             <Route
               path="/signout"
               element={
-                <SignOut setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
+                <SignOut
+                  setToken={setToken}
+                  setIsLoggedIn={setIsLoggedIn}
+                  setUser={setUser}
+                />
               }
             />
           </>
         ) : (
           <>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route
               path="/login"
               element={
-                <Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
+                <Login
+                  setToken={setToken}
+                  setIsLoggedIn={setIsLoggedIn}
+                  setUser={setUser}
+                />
               }
             />
           </>

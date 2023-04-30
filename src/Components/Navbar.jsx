@@ -22,7 +22,7 @@ const Navbar = ({ client }) => {
           </>
         ) : (
           <>
-            <NavLink to="/" className="link">
+            <NavLink to="/home" className="link">
               Home
             </NavLink>
             <NavLink to="/login" className="link">

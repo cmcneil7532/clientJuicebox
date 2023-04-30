@@ -1,6 +1,7 @@
 import React from "react";
 
-const Post = () => {
+const Post = ({ user }) => {
+  console.log(user);
   return <div>Post</div>;
 };
 

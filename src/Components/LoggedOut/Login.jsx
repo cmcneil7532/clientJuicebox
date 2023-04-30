@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../api/api";
+import { loginUser } from "../../api/api";
 
-const Login = ({ setToken, setIsLoggedIn }) => {
+const Login = ({ setToken, setIsLoggedIn, setUser }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ const Login = ({ setToken, setIsLoggedIn }) => {
       password,
     };
     try {
-      const { token } = await loginUser(userObj);
+      const { token, user } = await loginUser(userObj);
       if (token) {
         localStorage.setItem("client", true);
         setToken(token);
@@ -22,6 +22,7 @@ const Login = ({ setToken, setIsLoggedIn }) => {
         setUsername("");
         setPassword("");
         navigate("/welcome");
+        setUser(user);
       }
     } catch (error) {
       console.log(error);
